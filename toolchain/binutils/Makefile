@@ -35,6 +35,12 @@ ifneq ($(CONFIG_BINUTILS_VERSION_2_23_ARC),)
   HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(BINUTILS_DIR)
 endif
 
+# FIXME: overwrite here.
+PKG_VERSION=2.25.1
+PKG_SOURCE_URL:=/work/wrt/dl/
+PKG_SOURCE:=binutils-riscv.tar.gz
+PKG_MD5SUM:=b373a9d0e0be4db5abfdd7a0dfd3172a
+
 HOST_BUILD_PARALLEL:=1
 
 PATCH_DIR:=./patches/$(PKG_VERSION)

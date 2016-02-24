@@ -6,13 +6,13 @@
 #
 include $(TOPDIR)/rules.mk
 
-ARCH=riscv
-BOARD:=riscv
+ARCH:=riscv64
+BOARD:=riscv64
 BOARDNAME:=RISCV
 INITRAMFS_EXTRA_FILES:=
 MAINTAINER:=Alex Guo
 
-KERNEL_PATCHVER:=3.14
+KERNEL_PATCHVER:=4.1
 
 DEVICE_TYPE:=developerboard
 
