@@ -42,6 +42,13 @@ ifneq ($(CONFIG_GCC_VERSION_4_8_ARC),)
     HOST_BUILD_DIR = $(BUILD_DIR_HOST)/$(PKG_NAME)-$(GCC_VERSION)
 endif
 
+#FIXME: I overwrite here.
+PKG_VERSION:=5.3.0
+PKG_SOURCE_URL:=http://127.0.0.1:9900/
+PKG_SOURCE:=gcc-riscv.tar.gz
+PKG_MD5SUM:=88aaa9677112968985cf5f86237a3d59
+
+
 PATCH_DIR=../patches/$(GCC_VERSION)
 
 BUGURL=https://dev.openwrt.org/

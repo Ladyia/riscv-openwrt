@@ -13,8 +13,8 @@ REVISION_2.19 = 25243
 MD5SUM_2.21 = 76050a65c444d58b5c4aa0d6034736ed
 REVISION_2.21 = 16d0a0c
 
-MD5SUM_2.22 = b575850e77b37d70f96472285290b391
-REVISION_2.22 = b995d95
+MD5SUM_2.22 = e9f4b1fafb0e484f0f4d28cda3a0d6d7
+REVISION_2.22 = 
 
 
 PKG_NAME:=glibc
@@ -23,7 +23,7 @@ PKG_VERSION:=$(call qstrip,$(CONFIG_GLIBC_VERSION))
 PKG_REVISION:=$(REVISION_$(PKG_VERSION))
 PKG_MIRROR_MD5SUM:=$(MD5SUM_$(PKG_VERSION))
 
-PKG_SOURCE_PROTO:=git
+#PKG_SOURCE_PROTO:=git #FIXME: I overwrite here.
 PKG_SOURCE_URL:=git://sourceware.org/git/glibc.git
 PKG_SOURCE_VERSION:=$(PKG_REVISION)
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REVISION)
@@ -36,6 +36,14 @@ ifneq ($(CONFIG_EGLIBC_VERSION_2_19),)
   PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.bz2
   PKG_SOURCE_URL:=svn://svn.eglibc.org/branches/eglibc-2_19
 endif
+
+#FIXME: I overwrite here.
+PKG_VERSION:=2.22
+PKG_SOURCE_URL:=http://127.0.0.1:9900/
+PKG_SOURCE:=glibc-riscv.tar.gz
+PKG_MD5SUM:=e9f4b1fafb0e484f0f4d28cda3a0d6d7
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+
 
 PATCH_DIR:=$(PATH_PREFIX)/patches/$(PKG_VERSION)
 
@@ -59,6 +67,12 @@ ifeq ($(ARCH),mips64)
   ifdef CONFIG_MIPS64_ABI_O32
     TARGET_CFLAGS += -mabi=32
   endif
+endif
+
+#FIXME: I overwrite here:
+#       WHY REAL_CNU_TARGET_NAME can't be riscv64-openwrt-linux-gnu?
+ifeq ($(ARCH),riscv64)
+  REAL_GNU_TARGET_NAME=riscv-linux-gnu
 endif
 
 GLIBC_CONFIGURE:= \
