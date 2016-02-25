@@ -8,6 +8,11 @@ GCC_CONFIGURE += \
 	--enable-languages=c \
 	--disable-shared \
 	--disable-threads \
+	\
+	--enable-tls \
+	--disable-libatomic \
+	--disable-libquadmath \
+	--disable-bootstrap
 
 define Host/Compile
 	$(CP) $(BUILD_DIR_TOOLCHAIN)/linux-dev/* $(BUILD_DIR_TOOLCHAIN)/$(LIBC)-dev/

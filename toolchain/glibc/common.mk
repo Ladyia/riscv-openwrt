@@ -91,6 +91,13 @@ GLIBC_CONFIGURE:= \
 		--without-gd \
 		--without-cvs \
 		--enable-add-ons \
+		\
+		libc_cv_forced_unwind=yes \
+		libc_cv_c_cleanup=yes \
+		--enable-shared \
+		--enable-__thread \
+		--enable-kernel=2.6.32 \
+		\
 		--$(if $(CONFIG_SOFT_FLOAT),without,with)-fp
 
 export libc_cv_ssp=no

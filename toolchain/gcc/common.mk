@@ -132,10 +132,10 @@ ifndef GCC_VERSION_4_8
 endif
 
 ifneq ($(CONFIG_SSP_SUPPORT),)
-  GCC_CONFIGURE+= \
+#  GCC_CONFIGURE+= \
 		--enable-libssp
 else
-  GCC_CONFIGURE+= \
+#  GCC_CONFIGURE+= \
 		--disable-libssp
 endif
 
