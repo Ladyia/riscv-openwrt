@@ -44,9 +44,9 @@ endif
 
 #FIXME: I overwrite here.
 PKG_VERSION:=5.3.0
-PKG_SOURCE_URL:=http://127.0.0.1:9900/
+PKG_SOURCE_URL:=https://github.com/xfguo/riscv-openwrt-files/raw/master/
 PKG_SOURCE:=gcc-riscv.tar.gz
-PKG_MD5SUM:=88aaa9677112968985cf5f86237a3d59
+PKG_MD5SUM:=1efdcd5b2cda2aa0bc308f50c1217b55
 
 
 PATCH_DIR=../patches/$(GCC_VERSION)

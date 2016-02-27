@@ -37,9 +37,9 @@ endif
 
 # FIXME: I overwrite here.
 PKG_VERSION=2.25.1
-PKG_SOURCE_URL:=http://127.0.0.1:9900/
+PKG_SOURCE_URL:=https://github.com/xfguo/riscv-openwrt-files/raw/master/
 PKG_SOURCE:=binutils-riscv.tar.gz
-PKG_MD5SUM:=c2d6662b96fef71a2ca3d8ccd3abd9c2
+PKG_MD5SUM:=654f422f14537f3d741441cb23c03a9e
 
 
 HOST_BUILD_PARALLEL:=1
