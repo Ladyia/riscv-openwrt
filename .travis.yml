@@ -8,11 +8,6 @@ git:
   depth: 3
 
 script:
-  - ln -s $HOME/dl dl
   - cp openwrt.config .config
   - make V=s
-
-cache:
-  directories:
-  - $HOME/dl
 
