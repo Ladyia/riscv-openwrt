@@ -9,5 +9,5 @@ git:
 
 script:
   - cp openwrt.config .config
-  - make V=s
+  - make -j6 || make V=s
 
