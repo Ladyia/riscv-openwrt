@@ -41,7 +41,7 @@ endif
 PKG_VERSION:=2.22
 PKG_SOURCE_URL:=https://github.com/xfguo/riscv-openwrt-files/raw/master/
 PKG_SOURCE:=glibc-riscv.tar.gz
-PKG_MD5SUM:=d76f97b00a37cbf713e98ad20ab891bf
+PKG_MD5SUM:=49bfca0da29c81141fe98e9fc68226fc
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 
 
