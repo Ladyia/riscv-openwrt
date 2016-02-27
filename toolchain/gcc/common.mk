@@ -46,7 +46,7 @@ endif
 PKG_VERSION:=5.3.0
 PKG_SOURCE_URL:=https://github.com/xfguo/riscv-openwrt-files/raw/master/
 PKG_SOURCE:=gcc-riscv.tar.gz
-PKG_MD5SUM:=1efdcd5b2cda2aa0bc308f50c1217b55
+PKG_MD5SUM:=d646edf69bb0815b3aee7e1854990381
 
 
 PATCH_DIR=../patches/$(GCC_VERSION)
