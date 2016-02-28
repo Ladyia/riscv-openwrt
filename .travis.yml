@@ -23,3 +23,6 @@ deploy:
   local-dir: bin
   upload-dir: "$TRAVIS_BUILD_NUMBER-$(git rev-parse --short HEAD)"
   acl: public_read
+  on:
+    repo: xfguo/riscv-openwrt
+    branch: porting-riscv-wip-for-ci-test
