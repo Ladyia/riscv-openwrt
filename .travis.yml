@@ -1,13 +1,25 @@
 language: c
-
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq git-core build-essential libssl-dev libncurses5-dev unzip gawk python2.7 subversion
-
+- sudo apt-get update -qq
+- sudo apt-get install -qq git-core build-essential libssl-dev libncurses5-dev unzip
+  gawk python2.7 subversion
 git:
   depth: 3
-
 script:
-  - cp openwrt.config .config
-  - make -j6 || make V=s
-
+- mkdir -p $HOME/dl
+- ln -s $HOME/dl dl
+- cp openwrt.config .config
+- make -j12 || make V=s
+cache:
+  directories:
+  - "$HOME/dl"
+deploy:
+  provider: s3
+  access_key_id: AKIAIKIJ7NEGOFPRIO6A
+  secret_access_key:
+    secure: IWG2yPBJ6fvkHeKq5uUpDE83T5mH7Izk7EzaJVyeQuerqGemSmyjbc6mU/iN9thdUbp//x9mwT6ZSmD5TekNH3zJoJP3zyqF2N0IYZCRDM/YUkZPNYxEVNADK25wvFvic9BoVqFCk0ctJZnLwU6mMSSvxtm5FO7sar02+3TTLgV96vT3bCHgr36pEOGN7uukAeueQoFLpGPBeNAU9fWbwou+r10E4g07FqLd/jbRgoVD+mCNi9VZxmyLgPsmLvG5BX89p9Sq3geOPHhu+JaxGedDIMcUI3c5+5tee/Y6lPxj1cOA7OHHPukUqlnZBNImlRaY9D5m4bh+gMxVY9Cy69KPbZTFNsaQP/trrOgrXGEj0MOCk8Zaut4LfGBo88T1VbKhFRuHl2mc7Kip6yr8g+GGNmtly5yjyWaEeqmnbjJoth6neI6+OL9g98JCYH1kXu7s1l2AqugHQ/T9f9IaXcg9sgGoWZ8oBB/bGcXXBs2HRS1uSlih2pv49EmPYaR8skOeKWc00nLetRX9w2hbfSQFYc/smmwcYZUjrJgYzsCPCczinaQadWkMs9knYdHZICcSjUvf2unxQQfQ263tpkoWDpntWE4gDw7uXzbKq0QJNrYclcEA2F6eRZrRkbDCvOMM1JIjaSB5VfrIRkJY3k7nQ21yYnPI4buupIc0674=
+  bucket: riscv-openwrt
+  skip_cleanup: true
+  local-dir: bin
+  upload-dir: "$TRAVIS_BUILD_NUMBER-$(git rev-parse --short HEAD)"
+  acl: public_read
