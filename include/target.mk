@@ -226,17 +226,16 @@ ifeq ($(DUMP),1)
     CPU_CFLAGS_arc700 = -mcpu=arc700
     CPU_CFLAGS_archs = -mcpu=archs
   endif
+  ifeq ($(ARCH),riscv64)
+    CPU_TYPE ?= riscv64
+    # FIXME: check here
+    # CPU_CFLAGS += 
+    CPU_CFLAGS_riscv64:=-mabi=lp64d -march=rv64imafdc
+  endif
   ifneq ($(CPU_TYPE),)
     ifndef CPU_CFLAGS_$(CPU_TYPE)
       $(warning CPU_TYPE "$(CPU_TYPE)" doesn't correspond to a known type)
     endif
-  endif
-  ifeq ($(ARCH),riscv64)
-    CPU_TYPE ?= riscv64
-    # FIXME: check here
-    CPU_CFLAGS += -matomic
-    CPU_CFLAGS_riscv = -mriscv64
-    CPU_CFLAGS_archs = -marchs
   endif
   DEFAULT_CFLAGS=$(strip $(CPU_CFLAGS) $(CPU_CFLAGS_$(CPU_TYPE)) $(CPU_CFLAGS_$(CPU_SUBTYPE)))
 

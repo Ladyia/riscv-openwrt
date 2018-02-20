@@ -11,7 +11,7 @@ GCC_CONFIGURE += \
 	--with-slibdir=$(TOOLCHAIN_DIR)/lib \
 	--enable-lto \
 	--with-libelf=$(TOPDIR)/staging_dir/host \
-	\
+	#\
 	--enable-tls \
 	--disable-bootstrap \
 	--disable-libssp # FIXME: config CONFIG_SSP_SUPPORT as N

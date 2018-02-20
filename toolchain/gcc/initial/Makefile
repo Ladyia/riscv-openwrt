@@ -9,7 +9,7 @@ GCC_CONFIGURE += \
 	--enable-languages=c \
 	--disable-shared \
 	--disable-threads \
-	\
+	#\
 	--enable-tls \
 	--disable-libatomic \
 	--disable-libquadmath \

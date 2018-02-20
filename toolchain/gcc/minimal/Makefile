@@ -11,7 +11,7 @@ GCC_CONFIGURE += \
 	--disable-libssp \
 	--disable-shared \
 	--disable-threads \
-	\
+	#\
 	--enable-tls \
 	--disable-libatomic \
 	--disable-libquadmath \

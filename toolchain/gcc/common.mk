@@ -51,13 +51,15 @@ ifneq ($(CONFIG_GCC_VERSION_7_1_ARC),)
     HOST_BUILD_DIR = $(BUILD_DIR_HOST)/$(PKG_NAME)-$(GCC_VERSION)
 endif
 
+# TODO: use offical toolchain
+# TODO: use offical 7.3.0 toolchain
 ifneq ($(CONFIG_GCC_VERSION_7_2_RISCV),)
-    PKG_VERSION:=7.2.0
-    PKG_SOURCE_URL:=https://gitee.com/cnrv-riscv/riscv-gcc.git
-    PKG_SOURCE:=$(PKG_NAME)-$(GCC_VERSION).tar.gz
-    PKG_HASH:=b731149757b93ddc80e6e4b5483a6931d5f9ad60
-    GCC_DIR:=gcc-riscv-$(PKG_REV)
-    HOST_BUILD_DIR = $(BUILD_DIR_HOST)/$(PKG_NAME)-$(GCC_VERSION)
+    PKG_VER:=7.2.0
+    PKG_SOURCE_URL:=http://127.0.0.1:9000/
+    PKG_SOURCE:=riscv-gcc.tar.gz
+    PKG_HASH:=dbdbde9227d91c70888f7c75a61e2d37e22152c63258c85084cb583b533325f4
+    GCC_DIR:=riscv-gcc
+    HOST_BUILD_DIR = $(BUILD_DIR_HOST)/$(GCC_DIR)
 endif
 
 PATCH_DIR=../patches/$(GCC_VERSION)

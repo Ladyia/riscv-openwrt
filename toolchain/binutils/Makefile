@@ -34,12 +34,15 @@ ifneq ($(CONFIG_BINUTILS_VERSION_2_29_ARC),)
   HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(BINUTILS_DIR)
 endif
 
-# FIXME: I overwrite here.
-PKG_VERSION=2.25.1
-PKG_SOURCE_URL:=https://github.com/xfguo/riscv-openwrt-files/raw/master/
-PKG_SOURCE:=binutils-riscv.tar.gz
-PKG_MD5SUM:=654f422f14537f3d741441cb23c03a9e
-
+# TODO: use offical 2.29 toolchain
+ifneq ($(CONFIG_BINUTILS_VERSION_2_29_RISCV),)
+  PKG_REV:=riscv-binutils-gdb-2.29
+  PKG_SOURCE_URL:=http://127.0.0.1:9000/
+  PKG_SOURCE:=riscv-binutils-gdb.tar.gz
+  PKG_HASH:=5b1dd48dc4cb571fbe5a2ca1b0d764fe7b2f81772afe1a8a22a973d29543bd19
+  BINUTILS_DIR:=riscv-binutils-gdb
+  HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(BINUTILS_DIR)
+endif
 
 HOST_BUILD_PARALLEL:=1
 
