@@ -10,7 +10,12 @@ GCC_CONFIGURE += \
 	--enable-threads \
 	--with-slibdir=$(TOOLCHAIN_DIR)/lib \
 	--enable-lto \
-	--with-libelf=$(TOPDIR)/staging_dir/host
+	--with-libelf=$(TOPDIR)/staging_dir/host \
+	\
+	--enable-tls \
+	--disable-bootstrap \
+	--disable-libssp # FIXME: config CONFIG_SSP_SUPPORT as N
+	
 
 ifdef CONFIG_USE_MUSL
   GCC_MAKE += gcc_cv_libc_provides_ssp=yes

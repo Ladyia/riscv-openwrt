@@ -231,6 +231,13 @@ ifeq ($(DUMP),1)
       $(warning CPU_TYPE "$(CPU_TYPE)" doesn't correspond to a known type)
     endif
   endif
+  ifeq ($(ARCH),riscv64)
+    CPU_TYPE ?= riscv64
+    # FIXME: check here
+    CPU_CFLAGS += -matomic
+    CPU_CFLAGS_riscv = -mriscv64
+    CPU_CFLAGS_archs = -marchs
+  endif
   DEFAULT_CFLAGS=$(strip $(CPU_CFLAGS) $(CPU_CFLAGS_$(CPU_TYPE)) $(CPU_CFLAGS_$(CPU_SUBTYPE)))
 
   ifneq ($(BOARD),)

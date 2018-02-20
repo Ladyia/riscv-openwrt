@@ -9,9 +9,11 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=glibc
 PKG_VERSION:=2.26
 
-PKG_SOURCE_URL:=@GNU/libc
+# FIXME: I overwrite this.
+#PKG_SOURCE_URL:=@GNU/libc
+PKG_SOURCE_URL:=https://gitee.com/cnrv-riscv/riscv-glibc.git
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_HASH:=e54e0a934cd2bc94429be79da5e9385898d2306b9eaf3c92d5a77af96190f6bd
+PKG_HASH:=2f626de717a86be3a1fe39e779f0b179e13ccfbb
 
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(PKG_SOURCE_SUBDIR)
@@ -40,6 +42,13 @@ endif
 # -Os miscompiles w. 2.24 gcc5/gcc6
 # only -O2 tested by upstream changeset
 # "Optimize i386 syscall inlining for GCC 5"
+
+#FIXME: I overwrite here:
+#       WHY REAL_CNU_TARGET_NAME can't be riscv64-openwrt-linux-gnu?
+ifeq ($(ARCH),riscv64)
+  REAL_GNU_TARGET_NAME=riscv-linux-gnu
+endif
+
 GLIBC_CONFIGURE:= \
 	BUILD_CC="$(HOSTCC)" \
 	$(TARGET_CONFIGURE_OPTS) \
@@ -56,6 +65,13 @@ GLIBC_CONFIGURE:= \
 		--without-gd \
 		--without-cvs \
 		--enable-add-ons \
+		\
+		libc_cv_forced_unwind=yes \
+		libc_cv_c_cleanup=yes \
+		--enable-shared \
+		--enable-__thread \
+		--enable-kernel=2.6.32 \
+		\
 		--$(if $(CONFIG_SOFT_FLOAT),without,with)-fp
 
 export libc_cv_ssp=no

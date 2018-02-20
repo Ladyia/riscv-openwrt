@@ -9,6 +9,11 @@ GCC_CONFIGURE += \
 	--enable-languages=c \
 	--disable-shared \
 	--disable-threads \
+	\
+	--enable-tls \
+	--disable-libatomic \
+	--disable-libquadmath \
+	--disable-bootstrap
 
 define Host/Compile
 	+$(GCC_MAKE) $(HOST_JOBS) -C $(GCC_BUILD_DIR) \

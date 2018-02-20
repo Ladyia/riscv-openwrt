@@ -34,6 +34,13 @@ ifneq ($(CONFIG_BINUTILS_VERSION_2_29_ARC),)
   HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(BINUTILS_DIR)
 endif
 
+# FIXME: I overwrite here.
+PKG_VERSION=2.25.1
+PKG_SOURCE_URL:=https://github.com/xfguo/riscv-openwrt-files/raw/master/
+PKG_SOURCE:=binutils-riscv.tar.gz
+PKG_MD5SUM:=654f422f14537f3d741441cb23c03a9e
+
+
 HOST_BUILD_PARALLEL:=1
 
 PATCH_DIR:=./patches/$(PKG_VERSION)
