@@ -10,12 +10,12 @@ PKG_NAME:=glibc
 PKG_VERSION:=2.26
 
 # FIXME: I overwrite this.
-#PKG_SOURCE_URL:=@GNU/libc
-PKG_SOURCE_URL:=https://gitee.com/cnrv-riscv/riscv-glibc.git
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_HASH:=2f626de717a86be3a1fe39e779f0b179e13ccfbb
+PKG_SOURCE_URL:=http://127.0.0.1:9000/
+PKG_SOURCE:=riscv-glibc.tar.gz
+PKG_HASH:=b31d0a29feb3310aa3570b42953c46e6da322344385ec40a709a8ed8658f9daa
 
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+# FIXME: I overwrite this.
+PKG_SOURCE_SUBDIR:=riscv-glibc
 HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(PKG_SOURCE_SUBDIR)
 CUR_BUILD_DIR:=$(HOST_BUILD_DIR)-$(VARIANT)
 
@@ -45,9 +45,9 @@ endif
 
 #FIXME: I overwrite here:
 #       WHY REAL_CNU_TARGET_NAME can't be riscv64-openwrt-linux-gnu?
-ifeq ($(ARCH),riscv64)
-  REAL_GNU_TARGET_NAME=riscv-linux-gnu
-endif
+# ifeq ($(ARCH),riscv64)
+#   REAL_GNU_TARGET_NAME=riscv-linux-gnu
+# endif
 
 GLIBC_CONFIGURE:= \
 	BUILD_CC="$(HOSTCC)" \
@@ -65,14 +65,14 @@ GLIBC_CONFIGURE:= \
 		--without-gd \
 		--without-cvs \
 		--enable-add-ons \
-		\
+		--$(if $(CONFIG_SOFT_FLOAT),without,with)-fp
+		#\
 		libc_cv_forced_unwind=yes \
 		libc_cv_c_cleanup=yes \
 		--enable-shared \
 		--enable-__thread \
 		--enable-kernel=2.6.32 \
 		\
-		--$(if $(CONFIG_SOFT_FLOAT),without,with)-fp
 
 export libc_cv_ssp=no
 export libc_cv_ssp_strong=no
