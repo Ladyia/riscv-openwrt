@@ -13,4 +13,4 @@ READELF=$RISCV/bin/riscv64-openwrt-linux-readelf \
 	--with-payload=$BASE_DIR/build_dir/target-riscv64_riscv64_glibc/linux-riscv64/linux-_data_riscv_freedom_u_sdk_linux-HEAD/vmlinux \
 	--enable-print-device-tree \
 
-
+make
