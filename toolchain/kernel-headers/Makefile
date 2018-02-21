@@ -37,12 +37,6 @@ ifeq ($(strip $(BOARD)),uml)
   LINUX_KARCH:=$(subst x86_64,x86,$(subst i386,x86,$(ARCH)))
 endif
 
-#FIXME: later we will use riscv instead of riscv64/32,
-#       then we may remove this
-ifeq ($(findstring riscv, $(ARCH)),riscv)
-  LINUX_KARCH:=riscv
-endif
-
 HOST_EXTRACFLAGS=
 
 LINUX_HAS_HEADERS_INSTALL:=y
