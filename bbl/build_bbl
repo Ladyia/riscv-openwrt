@@ -1,0 +1,16 @@
+export BASE_DIR=../
+export STAGING_DIR=$BASE_DIR/staging_dir
+export RISCV=$STAGING_DIR/toolchain-riscv64_riscv64_gcc-7.2.0_glibc
+
+CC=$RISCV/bin/riscv64-openwrt-linux-gcc \
+AR=$RISCV/bin/riscv64-openwrt-linux-ar \
+RANLIB=$RISCV/bin/riscv64-openwrt-linux-ranlib \
+OBJCOPY=$RISCV/bin/riscv64-openwrt-linux-objcopy \
+AS=$RISCV/bin/riscv64-openwrt-linux-as \
+READELF=$RISCV/bin/riscv64-openwrt-linux-readelf \
+/data/riscv/freedom-u-sdk/riscv-pk/configure \
+	--host=riscv64-unknown-linux-gnu \
+	--with-payload=$BASE_DIR/build_dir/target-riscv64_riscv64_glibc/linux-riscv64/linux-_data_riscv_freedom_u_sdk_linux-HEAD/vmlinux \
+	--enable-print-device-tree \
+
+
