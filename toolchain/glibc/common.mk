@@ -10,12 +10,12 @@ PKG_NAME:=glibc
 PKG_VERSION:=2.26
 
 # FIXME: I overwrite this.
-PKG_SOURCE_URL:=http://127.0.0.1:9000/
-PKG_SOURCE:=riscv-glibc.tar.gz
-PKG_HASH:=b31d0a29feb3310aa3570b42953c46e6da322344385ec40a709a8ed8658f9daa
+PKG_SOURCE_URL:=https://api.github.com/repos/riscv/riscv-glibc/tarball/2f626de717a86be3a1fe39e779f0b179e13ccfbb?
+PKG_SOURCE:=riscv-riscv-glibc-2f626de.tar.gz
+PKG_HASH:=f85cb29d63aa9cf011982acd425d4d0b6e0e9a85a019c998bbae1d4245671599
 
 # FIXME: I overwrite this.
-PKG_SOURCE_SUBDIR:=riscv-glibc
+PKG_SOURCE_SUBDIR:=riscv-riscv-glibc-2f626de
 HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(PKG_SOURCE_SUBDIR)
 CUR_BUILD_DIR:=$(HOST_BUILD_DIR)-$(VARIANT)
 

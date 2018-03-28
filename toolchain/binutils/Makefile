@@ -36,11 +36,10 @@ endif
 
 # TODO: use offical 2.29 toolchain
 ifneq ($(CONFIG_BINUTILS_VERSION_2_29_RISCV),)
-  PKG_REV:=riscv-binutils-gdb-2.29
-  PKG_SOURCE_URL:=http://127.0.0.1:9000/
-  PKG_SOURCE:=riscv-binutils-gdb.tar.gz
-  PKG_HASH:=5b1dd48dc4cb571fbe5a2ca1b0d764fe7b2f81772afe1a8a22a973d29543bd19
-  BINUTILS_DIR:=riscv-binutils-gdb
+  PKG_SOURCE_URL:=https://api.github.com/repos/riscv/riscv-binutils-gdb/tarball/d0176cb1653b2dd3849861453ee90a52caefa95a?
+  PKG_SOURCE:=riscv-riscv-binutils-gdb-d0176cb.tar.gz
+  PKG_HASH:=e0103583a5d31913185aa11c2953f44801526e7a854cf177340e5ca97443bc86
+  BINUTILS_DIR:=riscv-riscv-binutils-gdb-d0176cb
   HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(BINUTILS_DIR)
 endif
 
