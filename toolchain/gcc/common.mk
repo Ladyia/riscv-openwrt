@@ -51,6 +51,16 @@ ifneq ($(CONFIG_GCC_VERSION_7_1_ARC),)
     HOST_BUILD_DIR = $(BUILD_DIR_HOST)/$(PKG_NAME)-$(GCC_VERSION)
 endif
 
+# TODO: use offical toolchain
+# TODO: use offical 7.3.0 toolchain
+ifneq ($(CONFIG_GCC_VERSION_7_2_RISCV),)
+    PKG_SOURCE_URL:=https://api.github.com/repos/riscv/riscv-gcc/tarball/b731149757b93ddc80e6e4b5483a6931d5f9ad60?
+    PKG_SOURCE:=riscv-riscv-gcc-b731149.tar.gz
+    PKG_HASH:=885356c25a522543160261fa902beff30371fa8a27e0dbef311082772439af70
+    GCC_DIR:=riscv-riscv-gcc-b731149
+    HOST_BUILD_DIR = $(BUILD_DIR_HOST)/$(GCC_DIR)
+endif
+
 PATCH_DIR=../patches/$(GCC_VERSION)
 
 BUGURL=http://www.lede-project.org/bugs/
@@ -147,7 +157,7 @@ ifneq ($(CONFIG_GCC_LIBSSP),)
   GCC_CONFIGURE+= \
 		--enable-libssp
 else
-  GCC_CONFIGURE+= \
+#  GCC_CONFIGURE+= \
 		--disable-libssp
 endif
 

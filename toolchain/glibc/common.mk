@@ -16,6 +16,14 @@ PKG_MIRROR_HASH:=31e90926a1d3093355aa85c04c68b3d109c3dc3d9f80afe50505e864b32ac78
 PKG_SOURCE_URL:=git://sourceware.org/git/glibc.git
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.xz
 
+# FIXME: I overwrite this.
+PKG_SOURCE_URL:=https://api.github.com/repos/riscv/riscv-glibc/tarball/2f626de717a86be3a1fe39e779f0b179e13ccfbb?
+PKG_SOURCE:=riscv-riscv-glibc-2f626de.tar.gz
+PKG_HASH:=f85cb29d63aa9cf011982acd425d4d0b6e0e9a85a019c998bbae1d4245671599
+
+# FIXME: I overwrite this.
+PKG_SOURCE_SUBDIR:=riscv-riscv-glibc-2f626de
+
 HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(PKG_SOURCE_SUBDIR)
 CUR_BUILD_DIR:=$(HOST_BUILD_DIR)-$(VARIANT)
 PATCH_DIR:=$(PATH_PREFIX)/patches
@@ -43,6 +51,7 @@ endif
 # -Os miscompiles w. 2.24 gcc5/gcc6
 # only -O2 tested by upstream changeset
 # "Optimize i386 syscall inlining for GCC 5"
+
 GLIBC_CONFIGURE:= \
 	unset LD_LIBRARY_PATH; \
 	BUILD_CC="$(HOSTCC)" \
@@ -61,6 +70,13 @@ GLIBC_CONFIGURE:= \
 		--without-cvs \
 		--enable-add-ons \
 		--$(if $(CONFIG_SOFT_FLOAT),without,with)-fp
+		#\
+		libc_cv_forced_unwind=yes \
+		libc_cv_c_cleanup=yes \
+		--enable-shared \
+		--enable-__thread \
+		--enable-kernel=2.6.32 \
+		\
 
 export libc_cv_ssp=no
 export libc_cv_ssp_strong=no
