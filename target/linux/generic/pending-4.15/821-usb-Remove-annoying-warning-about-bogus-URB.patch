@@ -52,22 +52,32 @@ Signed-off-by: Alexey Brodkin <abrodkin@synopsys.com>
 
 --- a/drivers/usb/core/urb.c
 +++ b/drivers/usb/core/urb.c
-@@ -326,9 +326,6 @@ EXPORT_SYMBOL_GPL(usb_unanchor_urb);
-  */
- int usb_submit_urb(struct urb *urb, gfp_t mem_flags)
- {
--	static int			pipetypes[4] = {
--		PIPE_CONTROL, PIPE_ISOCHRONOUS, PIPE_BULK, PIPE_INTERRUPT
--	};
- 	int				xfertype, max;
- 	struct usb_device		*dev;
- 	struct usb_host_endpoint	*ep;
-@@ -443,11 +440,6 @@ int usb_submit_urb(struct urb *urb, gfp_
+@@ -187,10 +187,6 @@ EXPORT_SYMBOL_GPL(usb_unanchor_urb);
+ 
+ /*-------------------------------------------------------------------*/
+ 
+-static const int pipetypes[4] = {
+-	PIPE_CONTROL, PIPE_ISOCHRONOUS, PIPE_BULK, PIPE_INTERRUPT
+-};
+-
+ /**
+  * usb_urb_ep_type_check - sanity check of endpoint in the given urb
+  * @urb: urb to be checked
+@@ -206,8 +202,6 @@ int usb_urb_ep_type_check(const struct u
+ 	ep = usb_pipe_endpoint(urb->dev, urb->pipe);
+ 	if (!ep)
+ 		return -EINVAL;
+-	if (usb_pipetype(urb->pipe) != pipetypes[usb_endpoint_type(&ep->desc)])
+-		return -EINVAL;
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(usb_urb_ep_type_check);
+@@ -465,11 +459,6 @@ int usb_submit_urb(struct urb *urb, gfp_
  	 * cause problems in HCDs if they get it wrong.
  	 */
  
 -	/* Check that the pipe's type matches the endpoint's type */
--	if (usb_pipetype(urb->pipe) != pipetypes[xfertype])
+-	if (usb_urb_ep_type_check(urb))
 -		dev_WARN(&dev->dev, "BOGUS urb xfer, pipe %x != type %x\n",
 -			usb_pipetype(urb->pipe), pipetypes[xfertype]);
 -
